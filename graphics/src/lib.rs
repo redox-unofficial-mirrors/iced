@@ -21,6 +21,7 @@
 #![forbid(rust_2018_idioms)]
 #![allow(clippy::inherent_to_string, clippy::type_complexity)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
+#![feature(generic_associated_types)]
 mod antialiasing;
 mod error;
 mod primitive;

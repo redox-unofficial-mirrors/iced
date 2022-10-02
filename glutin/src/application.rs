@@ -63,6 +63,10 @@ where
 
         log::info!("Window builder: {:#?}", builder);
 
+        // Hack to fix Redox, which defaults to OpenGL 3.1 for some reason
+        #[cfg(target_os = "redox")]
+        std::env::set_var("MESA_GL_VERSION_OVERRIDE", "3.3");
+
         let opengl_builder = ContextBuilder::new()
             .with_vsync(true)
             .with_multisampling(C::sample_count(&compositor_settings) as u16);
@@ -319,6 +323,7 @@ async fn run_instance<A, E, C>(
 
                 context.window().request_redraw();
             }
+            #[cfg(not(target_os = "redox"))]
             event::Event::PlatformSpecific(event::PlatformSpecific::MacOS(
                 event::MacOS::ReceivedUrl(url),
             )) => {

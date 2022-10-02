@@ -391,6 +391,7 @@ async fn run_instance<A, E, C>(
 
                 window.request_redraw();
             }
+            #[cfg(not(target_os = "redox"))]
             event::Event::PlatformSpecific(event::PlatformSpecific::MacOS(
                 event::MacOS::ReceivedUrl(url),
             )) => {
