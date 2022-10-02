@@ -13,7 +13,7 @@ categories = ["gui"]
 resolver = "2"
 
 [features]
-default = ["wgpu"]
+default = ["glow"]
 # Enables the `Image` widget
 image = ["iced_wgpu/image", "image_rs"]
 # Enables the `Svg` widget
@@ -125,3 +125,8 @@ incremental = false
 opt-level = 3
 overflow-checks = false
 strip = "debuginfo"
+
+[patch.crates-io]
+glutin = { git = "https://gitlab.redox-os.org/redox-os/glutin.git", branch = "redox-0.29" }
+osmesa-sys = { git = "https://gitlab.redox-os.org/redox-os/osmesa-rs.git", branch = "redox" }
+winit = { git = "https://gitlab.redox-os.org/redox-os/winit.git", branch = "redox-0.27" }

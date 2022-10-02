@@ -44,6 +44,7 @@
 #![forbid(unsafe_code, rust_2018_idioms)]
 #![allow(clippy::inherent_to_string, clippy::type_complexity)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
+#![feature(bool_to_option)]
 pub mod clipboard;
 pub mod command;
 pub mod event;

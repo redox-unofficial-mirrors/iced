@@ -16,15 +16,15 @@ system = ["sysinfo"]
 application = []
 
 [dependencies]
-window_clipboard = "0.2"
+window_clipboard = { version = "0.2", optional = true }
 log = "0.4"
 thiserror = "1.0"
 
 [dependencies.winit]
 # path = "../../winit"
 version = "0.27"
-git = "https://github.com/pop-os/winit.git"
-branch = "iced"
+#git = "https://github.com/pop-os/winit.git"
+#branch = "iced"
 
 [dependencies.iced_native]
 version = "0.5"

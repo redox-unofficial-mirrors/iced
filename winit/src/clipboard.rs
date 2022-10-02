@@ -11,12 +11,14 @@ pub struct Clipboard {
 }
 
 enum State {
+    #[cfg(feature = "window_clipboard")]
     Connected(window_clipboard::Clipboard),
     Unavailable,
 }
 
 impl Clipboard {
     /// Creates a new [`Clipboard`] for the given window.
+    #[cfg(feature = "window_clipboard")]
     pub fn connect(window: &winit::window::Window) -> Clipboard {
         let state = window_clipboard::Clipboard::connect(window)
             .ok()
@@ -24,6 +26,12 @@ impl Clipboard {
             .unwrap_or(State::Unavailable);
 
         Clipboard { state }
+    }
+
+    /// Creates a new [`Clipboard`] for the given window.
+    #[cfg(not(feature = "window_clipboard"))]
+    pub fn connect(_window: &winit::window::Window) -> Clipboard {
+        Self::unconnected()
     }
 
     /// Creates a new [`Clipboard`] that isn't associated with a window.
@@ -37,6 +45,7 @@ impl Clipboard {
     /// Reads the current content of the [`Clipboard`] as text.
     pub fn read(&self) -> Option<String> {
         match &self.state {
+            #[cfg(feature = "window_clipboard")]
             State::Connected(clipboard) => clipboard.read().ok(),
             State::Unavailable => None,
         }
@@ -45,6 +54,7 @@ impl Clipboard {
     /// Writes the given text contents to the [`Clipboard`].
     pub fn write(&mut self, contents: String) {
         match &mut self.state {
+            #[cfg(feature = "window_clipboard")]
             State::Connected(clipboard) => match clipboard.write(contents) {
                 Ok(()) => {}
                 Err(error) => {
