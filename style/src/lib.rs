@@ -17,6 +17,7 @@
 )]
 #![forbid(unsafe_code, rust_2018_idioms)]
 #![allow(clippy::inherent_to_string, clippy::type_complexity)]
+#![feature(derive_default_enum)]
 pub use iced_core::{Background, Color};
 
 pub mod application;
