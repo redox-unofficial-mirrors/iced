@@ -1,0 +1,32 @@
+[package]
+name = "iced_orbclient"
+version = "0.4.0"
+authors = ["Jeremy Soller <jackpot51@gmail.com>"]
+edition = "2021"
+description = "An orbclient runtime for Iced"
+license = "MIT"
+repository = "https://github.com/iced-rs/iced"
+documentation = "https://docs.rs/iced_orbclient"
+keywords = ["gui", "ui", "graphics", "interface", "widgets"]
+categories = ["gui"]
+
+[features]
+debug = ["iced_native/debug"]
+application = []
+
+[dependencies]
+orbclient = "0.3"
+log = "0.4"
+thiserror = "1.0"
+
+[dependencies.iced_native]
+version = "0.5"
+path = "../native"
+
+[dependencies.iced_graphics]
+version = "0.3"
+path = "../graphics"
+
+[dependencies.iced_futures]
+version = "0.4"
+path = "../futures"

@@ -142,6 +142,8 @@ where
     let _ = event_loop.run_return(move |event, _, control_flow| {
         use glutin::event_loop::ControlFlow;
 
+        log::trace!("glutin {:?}", event);
+
         if let ControlFlow::ExitWithCode(_) = control_flow {
             return;
         }
@@ -232,6 +234,7 @@ async fn run_instance<A, E, C>(
     debug.startup_finished();
 
     while let Some(event) = receiver.next().await {
+        log::trace!("receiver {:?}", event);
         match event {
             event::Event::MainEventsCleared => {
                 if events.is_empty() && messages.is_empty() {

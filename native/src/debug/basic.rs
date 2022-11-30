@@ -39,7 +39,7 @@ impl Debug {
         let now = time::Instant::now();
 
         Self {
-            is_enabled: false,
+            is_enabled: true,
             startup_start: now,
             startup_duration: time::Duration::from_secs(0),
 

@@ -186,11 +186,17 @@ use iced_winit as runtime;
 #[cfg(feature = "glow")]
 use iced_glutin as runtime;
 
+#[cfg(feature = "orbclient")]
+use iced_orbclient as runtime;
+
 #[cfg(all(not(feature = "glow"), feature = "wgpu"))]
 use iced_wgpu as renderer;
 
 #[cfg(feature = "glow")]
 use iced_glow as renderer;
+
+#[cfg(feature = "orbclient")]
+use iced_orbclient as renderer;
 
 pub use iced_native::theme;
 pub use runtime::event;

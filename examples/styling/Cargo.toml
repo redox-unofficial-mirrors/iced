@@ -6,4 +6,5 @@ edition = "2021"
 publish = false
 
 [dependencies]
-iced = { path = "../.." }
+iced = { path = "../..", features = ["debug"] }
+env_logger = "0.9"

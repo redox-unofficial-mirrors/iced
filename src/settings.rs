@@ -106,6 +106,20 @@ where
     }
 }
 
+#[cfg(feature = "orbclient")]
+impl<Flags> From<Settings<Flags>> for iced_orbclient::Settings<Flags> {
+    fn from(settings: Settings<Flags>) -> iced_orbclient::Settings<Flags> {
+        iced_orbclient::Settings {
+            default_font: None,
+            default_text_size: 20,
+            text_multithreading: false,
+            antialiasing: None,
+            //TODO: more settings
+            flags: settings.flags,
+        }
+    }
+}
+
 impl<Flags> From<Settings<Flags>> for iced_winit::Settings<Flags> {
     fn from(settings: Settings<Flags>) -> iced_winit::Settings<Flags> {
         iced_winit::Settings {

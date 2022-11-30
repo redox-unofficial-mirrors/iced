@@ -6,6 +6,8 @@ use iced::widget::{
 use iced::{Alignment, Element, Length, Sandbox, Settings, Theme};
 
 pub fn main() -> iced::Result {
+    env_logger::init();
+
     Styling::run(Settings::default())
 }
 
