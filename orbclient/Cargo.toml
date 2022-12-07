@@ -17,6 +17,7 @@ application = []
 [dependencies]
 orbclient = "0.3"
 log = "0.4"
+raw-window-handle = "0.4"
 thiserror = "1.0"
 
 [dependencies.iced_native]
@@ -26,6 +27,7 @@ path = "../native"
 [dependencies.iced_graphics]
 version = "0.3"
 path = "../graphics"
+features = ["font-icons"]
 
 [dependencies.iced_futures]
 version = "0.4"

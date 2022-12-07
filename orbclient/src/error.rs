@@ -7,6 +7,10 @@ pub enum Error {
     #[error("the futures executor could not be created")]
     ExecutorCreationFailed(futures::io::Error),
 
+    /// The application window could not be created.
+    #[error("the application window could not be created")]
+    WindowCreationFailed,
+
     /// The application graphics context could not be created.
     #[error("the application graphics context could not be created")]
     GraphicsCreationFailed(iced_graphics::Error),

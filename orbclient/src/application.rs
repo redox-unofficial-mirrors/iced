@@ -1,7 +1,5 @@
-use crate::{Command, Error, Executor, Settings, Subscription};
+use crate::{Command, Error, Executor, Subscription, settings};
 
-use iced_graphics::compositor;
-use iced_graphics::window;
 use iced_native::program::Program;
 
 pub use iced_native::application::{Appearance, StyleSheet};
@@ -87,14 +85,31 @@ where
 /// Runs an [`Application`] with an executor, compositor, and the provided
 /// settings.
 pub fn run<A, E, C>(
-    settings: Settings<A::Flags>,
-    compositor_settings: C::Settings,
+    runtime_settings: settings::RuntimeSettings<A::Flags>,
+    compositor_settings: settings::CompositorSettings,
 ) -> Result<(), Error>
 where
     A: Application + 'static,
     E: Executor + 'static,
-    C: window::Compositor<Renderer = A::Renderer> + 'static,
     <A::Renderer as iced_native::Renderer>::Theme: StyleSheet,
 {
-    todo!();
+    //TODO: use settings
+    let mut window = match orbclient::Window::new_flags(-1, -1, 1024, 768, "iced", &[]) {
+        Some(some) => some,
+        None => return Err(Error::WindowCreationFailed),
+    };
+
+    let application = A::new(runtime_settings.flags);
+
+    let mut running = true;
+    while running {
+        for event in window.events() {
+            match event.to_option() {
+                orbclient::EventOption::Quit(_) => running = false,
+                _ => (),
+            }
+        }
+    }
+
+    Ok(())
 }

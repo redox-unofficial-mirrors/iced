@@ -16,6 +16,22 @@ pub enum Error {
     GraphicsCreationFailed(iced_graphics::Error),
 }
 
+impl From<iced_orbclient::Error> for Error {
+    fn from(error: iced_orbclient::Error) -> Error {
+        match error {
+            iced_orbclient::Error::ExecutorCreationFailed(error) => {
+                Error::ExecutorCreationFailed(error)
+            }
+            iced_orbclient::Error::WindowCreationFailed => {
+                Error::WindowCreationFailed(String::new().into())
+            }
+            iced_orbclient::Error::GraphicsCreationFailed(error) => {
+                Error::GraphicsCreationFailed(error)
+            }
+        }
+    }
+}
+
 impl From<iced_winit::Error> for Error {
     fn from(error: iced_winit::Error) -> Error {
         match error {
