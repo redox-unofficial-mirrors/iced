@@ -6,7 +6,7 @@ if [ -n "$1" ]
 then
     EXAMPLE="$1"
 else
-    EXAMPLE=window
+    EXAMPLE=styling
 fi
 
 rm -rf target/redoxer
